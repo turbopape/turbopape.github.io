@@ -4,8 +4,8 @@ goog.require('cljs.core');
 goog.require('clojure.walk');
 goog.require('cljs.reader');
 scheje.tools.get_syntax = (function scheje$tools$get_syntax(exp,syntaxes){
-return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__14424_SHARP_){
-return cljs.core._EQ_.call(null,exp,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(p1__14424_SHARP_));
+return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__14422_SHARP_){
+return cljs.core._EQ_.call(null,exp,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(p1__14422_SHARP_));
 }),syntaxes));
 });
 scheje.tools.get_literals = (function scheje$tools$get_literals(syntaxes){
@@ -42,8 +42,11 @@ return cljs.core.deref.call(null,res);
 scheje.tools.is_exp_valid_QMARK_ = (function scheje$tools$is_exp_valid_QMARK_(exp){
 return cljs.core.every_QMARK_.call(null,scheje.tools.is_valid_symbol_QMARK_,scheje.tools.get_symbols.call(null,exp));
 });
+scheje.tools.rm_comments = (function scheje$tools$rm_comments(s){
+return s.replace((new RegExp(";.*\n+","g")),"").replace((new RegExp(";.*$","g")),"");
+});
 scheje.tools.get_sexps = (function scheje$tools$get_sexps(s){
-var remaining = s;
+var remaining = scheje.tools.rm_comments.call(null,s);
 var level = (0);
 var result = cljs.core.PersistentVector.EMPTY;
 var current_sexp = "";
@@ -55,24 +58,24 @@ var cur_level = ((cljs.core._EQ_.call(null,cur_char,"("))?(level + (1)):((cljs.c
 ));
 var result__$1 = (((cur_level === (0)))?cljs.core.conj.call(null,result,[cljs.core.str(current_sexp),cljs.core.str(cur_char)].join('')):result);
 var new_current_sexp = (((cur_level === (0)))?"":[cljs.core.str(current_sexp),cljs.core.str(cur_char)].join(''));
-var G__14425 = cljs.core.rest.call(null,remaining);
-var G__14426 = cur_level;
-var G__14427 = result__$1;
-var G__14428 = new_current_sexp;
-remaining = G__14425;
-level = G__14426;
-result = G__14427;
-current_sexp = G__14428;
+var G__14423 = cljs.core.rest.call(null,remaining);
+var G__14424 = cur_level;
+var G__14425 = result__$1;
+var G__14426 = new_current_sexp;
+remaining = G__14423;
+level = G__14424;
+result = G__14425;
+current_sexp = G__14426;
 continue;
 } else {
-var G__14429 = cljs.core.rest.call(null,remaining);
-var G__14430 = level;
-var G__14431 = result;
-var G__14432 = current_sexp;
-remaining = G__14429;
-level = G__14430;
-result = G__14431;
-current_sexp = G__14432;
+var G__14427 = cljs.core.rest.call(null,remaining);
+var G__14428 = level;
+var G__14429 = result;
+var G__14430 = current_sexp;
+remaining = G__14427;
+level = G__14428;
+result = G__14429;
+current_sexp = G__14430;
 continue;
 }
 } else {
@@ -88,4 +91,4 @@ return fs.readFileSync(f,"utf8");
 return cljs.core.map.call(null,cljs.reader.read_string,scheje.tools.get_sexps.call(null,file_string));
 });
 
-//# sourceMappingURL=tools.js.map?rel=1455105323937
+//# sourceMappingURL=tools.js.map?rel=1455204567222

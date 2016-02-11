@@ -369,7 +369,7 @@ return scheje.interpreter.form_apply.call(null,cljs.core.cons.call(null,cljs.cor
 }
 }
 });
-scheje.interpreter.eval_exp_with_env_BANG_ = (function scheje$interpreter$eval_exp_with_env_BANG_(env,exp){
+scheje.interpreter.eval_exp_with_env = (function scheje$interpreter$eval_exp_with_env(env,exp){
 if(cljs.core.truth_(scheje.tools.is_exp_valid_QMARK_.call(null,exp))){
 try{if((cljs.core.seq_QMARK_.call(null,exp)) && (cljs.core._EQ_.call(null,cljs.core.first.call(null,exp),new cljs.core.Symbol(null,"define-syntax","define-syntax",-675654212,null)))){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [scheje.interpreter.define_syntax.call(null,env,cljs.core.second.call(null,exp),cljs.core.second.call(null,cljs.core.second.call(null,cljs.core.rest.call(null,exp))),cljs.core.rest.call(null,cljs.core.rest.call(null,cljs.core.second.call(null,cljs.core.rest.call(null,exp))))),cljs.core.second.call(null,exp)], null);
@@ -396,14 +396,14 @@ throw e14655;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [env,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"error","error",-978969032),[cljs.core.str("Invalid Symbols in exp: "),cljs.core.str(exp)].join('')], null)], null);
 }
 });
-scheje.interpreter.eval_prog_with_env_BANG_ = (function scheje$interpreter$eval_prog_with_env_BANG_(a,exprs){
+scheje.interpreter.eval_prog_with_env = (function scheje$interpreter$eval_prog_with_env(a,exprs){
 var remaining = exprs;
 var eval_result = cljs.core.PersistentVector.EMPTY;
 var env = a;
 while(true){
 if(cljs.core.seq.call(null,remaining)){
 var exp = cljs.core.first.call(null,remaining);
-var vec__14657 = scheje.interpreter.eval_exp_with_env_BANG_.call(null,env,exp);
+var vec__14657 = scheje.interpreter.eval_exp_with_env.call(null,env,exp);
 var new_env = cljs.core.nth.call(null,vec__14657,(0),null);
 var the_eval = cljs.core.nth.call(null,vec__14657,(1),null);
 if((new cljs.core.Keyword(null,"error","error",-978969032).cljs$core$IFn$_invoke$arity$1(the_eval) == null)){
@@ -425,6 +425,6 @@ break;
 });
 scheje.interpreter.eval_prog = cljs.core.comp.call(null,cljs.core.last,cljs.core.partial.call(null,cljs.core.map,(function (p1__14661_SHARP_){
 return cljs.core.get.call(null,p1__14661_SHARP_,(1));
-})),new cljs.core.Keyword(null,"evals","evals",-1296313267),cljs.core.partial.call(null,scheje.interpreter.eval_prog_with_env_BANG_,scheje.library.root_env));
+})),new cljs.core.Keyword(null,"evals","evals",-1296313267),cljs.core.partial.call(null,scheje.interpreter.eval_prog_with_env,scheje.library.root_env));
 
-//# sourceMappingURL=interpreter.js.map?rel=1455105324491
+//# sourceMappingURL=interpreter.js.map?rel=1455204567768

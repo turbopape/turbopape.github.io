@@ -1735,4 +1735,4 @@ figwheel.client.watch_and_reload.cljs$lang$applyTo = (function (seq22337){
 return figwheel.client.watch_and_reload.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq22337));
 });
 
-//# sourceMappingURL=client.js.map?rel=1455105330850
+//# sourceMappingURL=client.js.map?rel=1455204574023

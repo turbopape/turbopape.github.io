@@ -140,4 +140,4 @@ return figwheel.client.utils.log.call(null,new cljs.core.Keyword(null,"debug","d
 }
 });
 
-//# sourceMappingURL=socket.js.map?rel=1455105330340
+//# sourceMappingURL=socket.js.map?rel=1455204573535

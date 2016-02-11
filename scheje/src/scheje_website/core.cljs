@@ -1,9 +1,10 @@
 (ns scheje-website.core
-  (:require [scheje.interpreter :refer [eval-prog-with-env!]]
+  (:require [scheje.interpreter :refer [eval-prog-with-env]]
             [scheje.library :refer [root-env]]
-            [scheje.tools :refer [get-sexps]]
+            [scheje.tools :refer [get-sexps rm-comments]]
             [cljs.reader :as cljs-reader]
-            [scheje-website.expression :refer [handle]]))
+            [scheje-website.expression :refer [handle]]
+            [dommy.core :as dommy :refer-macros [sel sel1]]))
 
 (def exec-env (atom root-env))
 
@@ -15,25 +16,40 @@
                         "lineNumbers"     true})
 
 
+
+
 (defn create-editor [config]
   (js/CodeMirror (.getElementById js/document "scheme-codemirror") (clj->js config)))
 
 (def editor (create-editor codemirror-config))
 
+(def display-zone (sel1 [:body :#portfolio :#dzone]))
+
 (defn show-eval!
-  [s]
-  (js/alert s))
+  [ev]
+  (if-let [error (:error ev)]
+    (-> display-zone 
+      (dommy/set-text!  error)
+      (dommy/remove-class!  :alert-success)
+      (dommy/add-class! :alert-danger))
+    (if ev
+      (-> display-zone 
+          (dommy/set-text!  ev)
+          (dommy/remove-class! :alert-danger)
+          (dommy/add-class!  :alert-success))
+      (-> display-zone
+          (dommy/set-text! "")
+          (dommy/remove-class! :alert-danger)
+          (dommy/remove-class! :alert-success)))))
   
 (defn eval-sexps!
   [sexps]
   (let [seq-sexps (apply list sexps)
-        forms-eval (eval-prog-with-env! @exec-env seq-sexps)
+        forms-eval (eval-prog-with-env @exec-env seq-sexps)
         last-eval (->> forms-eval  :evals (map  #(get % 1)) last)]
-    (if (nil? (:error last-eval))
-      (do
-        (swap! exec-env merge (:env forms-eval))
-        (show-eval! last-eval))
-      (show-eval! (str  "Error: " (:error last-eval))))))
+    (when (nil? (:error last-eval))
+      (swap! exec-env merge (:env forms-eval)))
+    (show-eval! last-eval)))
 
 (.setOption editor "extraKeys"
             (js-obj "Ctrl-J" (fn[cm]
@@ -50,4 +66,6 @@
                                             code (.getValue editor)
                                             s-exp (handle code meta pos)]
                                         (when (= (:syntax s-exp) "ok")
-                                          (eval-sexps! (s-exp :forms)))))))
+                                          (if (not (empty? (get s-exp :forms)))
+                                            (eval-sexps! (s-exp :forms))
+                                            (eval-sexps! (list  (.getLine editor (get pos :line))))))))))
