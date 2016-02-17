@@ -366,4 +366,4 @@ var ___$1 = cljs.core.reset_BANG_.call(null,scheje.unifier.iteration_id,(0));
 return cljs.core.trampoline.call(null,scheje.unifier.uni,ts,env,u,v,cljs.core.identity,cljs.core.identity);
 });
 
-//# sourceMappingURL=unifier.js.map?rel=1455204567591
+//# sourceMappingURL=unifier.js.map?rel=1455728536691

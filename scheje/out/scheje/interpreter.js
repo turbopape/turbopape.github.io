@@ -30,7 +30,12 @@ if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"cdr","cdr",1766924024,n
 return cljs.core.rest.call(null,cljs.core.first.call(null,r));
 } else {
 if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"cons","cons",755448454,null))){
+if(cljs.core.seq_QMARK_.call(null,cljs.core.second.call(null,r))){
 return cljs.core.cons.call(null,cljs.core.first.call(null,r),cljs.core.second.call(null,r));
+} else {
+return cljs.core.cons.call(null,cljs.core.first.call(null,r),cljs.core._conj.call(null,cljs.core.List.EMPTY,cljs.core.second.call(null,r)));
+
+}
 } else {
 if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"atom?","atom?",-1007535292,null))){
 return scheje.tools.atom_QMARK_.call(null,cljs.core.first.call(null,r));
@@ -116,7 +121,18 @@ if(cljs.core.empty_QMARK_.call(null,exp_tail__14635_tail__14639)){
 var body = cljs.core.first.call(null,exp_head__14632_tail__14637);
 var parms = cljs.core.first.call(null,exp_tail__14635);
 var args = cljs.core.rest.call(null,exp);
+if((parms instanceof cljs.core.Symbol)){
+return scheje.interpreter.form_eval.call(null,body,cljs.core.assoc.call(null,a,parms,args));
+} else {
+if(cljs.core.truth_(cljs.core.some.call(null,new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Symbol(null,".",".",1975675962,null),null], null), null),cljs.core.map.call(null,cljs.core.comp.call(null,cljs.core.symbol,new cljs.core.Keyword(null,"sym","sym",-1444860305),scheje.unifier.get_symbol_idx,cljs.core.name),parms)))){
+var nparms = cljs.core.butlast.call(null,cljs.core.butlast.call(null,parms));
+var rparm = cljs.core.last.call(null,parms);
+return scheje.interpreter.form_eval.call(null,body,cljs.core.assoc.call(null,scheje.tools.pairlis.call(null,nparms,cljs.core.take.call(null,cljs.core.count.call(null,nparms),args),a),rparm,cljs.core.drop.call(null,cljs.core.count.call(null,nparms),args)));
+} else {
 return scheje.interpreter.form_eval.call(null,body,scheje.tools.pairlis.call(null,parms,args,a));
+
+}
+}
 } else {
 throw cljs.core.match.backtrack;
 
@@ -378,7 +394,12 @@ if((cljs.core.seq_QMARK_.call(null,exp)) && (cljs.core._EQ_.call(null,cljs.core.
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [scheje.interpreter.sym_set_BANG_.call(null,env,cljs.core.second.call(null,exp),cljs.core.first.call(null,cljs.core.rest.call(null,cljs.core.rest.call(null,exp)))),cljs.core.second.call(null,exp)], null);
 } else {
 if((cljs.core.seq_QMARK_.call(null,exp)) && (cljs.core._EQ_.call(null,cljs.core.first.call(null,exp),new cljs.core.Symbol(null,"define","define",-366059178,null)))){
+if(cljs.core.seq_QMARK_.call(null,cljs.core.second.call(null,exp))){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [scheje.interpreter.define.call(null,env,cljs.core.first.call(null,cljs.core.second.call(null,exp)),cljs.core._conj.call(null,cljs.core._conj.call(null,cljs.core._conj.call(null,cljs.core.List.EMPTY,cljs.core.first.call(null,cljs.core.rest.call(null,cljs.core.rest.call(null,exp)))),cljs.core.rest.call(null,cljs.core.second.call(null,exp))),new cljs.core.Symbol(null,"lambda","lambda",157104302,null))),cljs.core.second.call(null,exp)], null);
+} else {
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [scheje.interpreter.define.call(null,env,cljs.core.second.call(null,exp),cljs.core.first.call(null,cljs.core.rest.call(null,cljs.core.rest.call(null,exp)))),cljs.core.second.call(null,exp)], null);
+
+}
 } else {
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [env,scheje.interpreter.form_eval.call(null,exp,env)], null);
 
@@ -427,4 +448,4 @@ scheje.interpreter.eval_prog = cljs.core.comp.call(null,cljs.core.last,cljs.core
 return cljs.core.get.call(null,p1__14661_SHARP_,(1));
 })),new cljs.core.Keyword(null,"evals","evals",-1296313267),cljs.core.partial.call(null,scheje.interpreter.eval_prog_with_env,scheje.library.root_env));
 
-//# sourceMappingURL=interpreter.js.map?rel=1455204567768
+//# sourceMappingURL=interpreter.js.map?rel=1455728536879
