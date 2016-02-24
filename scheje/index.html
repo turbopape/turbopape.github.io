@@ -92,19 +92,19 @@
 
 (define eval-quote
   (lambda (fn)
-    (my-apply (car fn) (cdr fn) '())))
+    (my-apply (car fn) (evlis (cdr fn) '()) '())))
 
 ;;;;;;;;;;;;;;;;;;;
 ;; Usage samples ;;
 ;;;;;;;;;;;;;;;;;;;
 
-(eval-quote '(cons a (a b c)))
+(eval-quote '(cons 'a '(a b c)))
 ;;=>  (a a b c)
-(eval-quote '(cdr (a b c)))
+(eval-quote '(cdr '(a b c)))
 ;;=>  (b c)
 (eval-quote '((lambda(a)
                 (cdr a))
-              (b c d)))
+              '(b c d)))
 ;;=>  (c d)
    
 </textarea>
