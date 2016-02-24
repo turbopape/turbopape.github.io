@@ -4,7 +4,7 @@
   :license {:name "MIT"
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [scheje "0.2.12"]
+                 [scheje "0.2.13"]
                  [org.clojure/tools.reader "1.0.0-alpha1"]
                  [prismatic/dommy "1.1.0"]]
   :plugins [[lein-figwheel "0.5.0-6"]]

@@ -22,7 +22,7 @@
             <div class="intro-text">
               <span class="name"><a href="https://github.com/turbopape/scheje">scheje</a> Web REPL by <a href="https://github/turbopape">@turbopape</a></span>
               <hr class="star-light">
-              <span class="skills">Scheje v0.2.12, Web REPL v0.1.0, February 2016. This editor has some emacs bindings. Eval last s-exp before cursor using <b>C-x C-e</b>. Load the whole buffer using <b>C-j</b>.</span>
+              <span class="skills">Scheje v0.2.13, Web REPL v0.1.0, February 2016. This editor has some emacs bindings. Eval last s-exp before cursor using <b>C-x C-e</b>. Load the whole buffer using <b>C-j</b>.</span>
             </div>
           </div>
         </div>
@@ -36,7 +36,77 @@
           <div class="col-sm-12 portfolio-item">
             <div id="scheme-codemirror">
             </div>
-            <textarea id="default-template" style="display: none">;;Type some scheme here!
+            <textarea id="default-template" style="display: none">
+;; A tiny scheme implementation on Scheje, based on eval/apply from
+;; The Lisp 1.5 manual. First eval the whole Buffer (C-j),
+;; Then scroll down the buffer for some examples:
+
+;;;;;;;;;;;;;;
+;; The code ;;
+;;;;;;;;;;;;;;
+
+(define atom?
+  (lambda(x) (not (pair? x))))
+
+(define pairlis
+  (lambda(u v t)
+    (cond
+     ((eq? (length u) (length v))
+      (cond
+       ((null? u) t)
+       (else (alist-cons (car u) (car v) (pairlis (cdr u) (cdr v) t))))))))
+
+(define evcon
+  (lambda(c a)
+    (cond
+     ((my-eval (caar  c) a) (my-eval (cadar c) a))
+     (else (evcon (cdr c) a)))))
+
+(define evlis
+  (lambda(m a)
+    (cond
+     ((null? m) '())
+     (else (cons (my-eval (car m) a) (evlis (cdr m) a))))))
+
+(define my-apply
+  (lambda(fn x a)
+    (cond
+     ((atom? fn) (cond
+                  ((eq? fn 'car) (caar x))
+                  ((eq? fn 'cdr) (cdar x))
+                  ((eq? fn 'cons) (cons (car x) (cadr x)))
+                  ((eq? fn 'eq?) (eq? (car x) (cadr x)))
+                  (else (my-apply (my-eval fn a) x a))))
+     ((eq? (car fn) 'lambda) (my-eval (caddr fn) (pairlis (cadr fn) x a))))))
+
+(define my-eval
+  (lambda (e a)
+    (cond 
+     ((atom? e) (cadr (assoc e a)))
+     ((atom? (car e)) (cond 
+                       ((eq? (car e) 'quote)(cadr e))
+                       ((eq? (car e) 'cond) (evcon (cdr e) a))
+                       (else (my-apply (car e) (evlis (cdr e) a) a))))
+     (else (my-apply (car e) (evlis (cdr e) a) a)))))
+
+
+(define eval-quote
+  (lambda (fn)
+    (my-apply (car fn) (cdr fn) '())))
+
+;;;;;;;;;;;;;;;;;;;
+;; Usage samples ;;
+;;;;;;;;;;;;;;;;;;;
+
+(eval-quote '(cons a (a b c)))
+;;=>  (a a b c)
+(eval-quote '(cdr (a b c)))
+;;=>  (b c)
+(eval-quote '((lambda(a)
+                (cdr a))
+              (b c d)))
+;;=>  (c d)
+   
 </textarea>
           </div>
         </div>

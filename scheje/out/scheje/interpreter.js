@@ -14,8 +14,14 @@ try{var exp_head__14630 = cljs.core.first.call(null,exp);
 if(cljs.core.truth_(scheje.tools.atom_QMARK_.call(null,exp_head__14630))){
 var f = cljs.core.first.call(null,exp);
 var r = cljs.core.rest.call(null,exp);
+if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"length","length",-2065447907,null))){
+return cljs.core.count.call(null,cljs.core.first.call(null,r));
+} else {
 if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"eq?","eq?",2123283611,null))){
 return cljs.core.apply.call(null,cljs.core._EQ_,cljs.core.into.call(null,cljs.core.PersistentVector.EMPTY,r));
+} else {
+if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"pair?","pair?",181399999,null))){
+return cljs.core.seq_QMARK_.call(null,cljs.core.first.call(null,r));
 } else {
 if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"=","=",-1501502141,null))){
 return cljs.core.apply.call(null,cljs.core._EQ_,cljs.core.into.call(null,cljs.core.PersistentVector.EMPTY,r));
@@ -30,12 +36,7 @@ if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"cdr","cdr",1766924024,n
 return cljs.core.rest.call(null,cljs.core.first.call(null,r));
 } else {
 if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"cons","cons",755448454,null))){
-if(cljs.core.seq_QMARK_.call(null,cljs.core.second.call(null,r))){
 return cljs.core.cons.call(null,cljs.core.first.call(null,r),cljs.core.second.call(null,r));
-} else {
-return cljs.core.cons.call(null,cljs.core.first.call(null,r),cljs.core._conj.call(null,cljs.core.List.EMPTY,cljs.core.second.call(null,r)));
-
-}
 } else {
 if(cljs.core._EQ_.call(null,f,new cljs.core.Symbol(null,"atom?","atom?",-1007535292,null))){
 return scheje.tools.atom_QMARK_.call(null,cljs.core.first.call(null,r));
@@ -69,6 +70,8 @@ return cljs.core.apply.call(null,cljs.core._GT__EQ_,cljs.core.into.call(null,clj
 } else {
 return scheje$interpreter$form_apply.call(null,cljs.core.cons.call(null,scheje.interpreter.form_eval.call(null,f,a),r),a);
 
+}
+}
 }
 }
 }
@@ -448,4 +451,4 @@ scheje.interpreter.eval_prog = cljs.core.comp.call(null,cljs.core.last,cljs.core
 return cljs.core.get.call(null,p1__14661_SHARP_,(1));
 })),new cljs.core.Keyword(null,"evals","evals",-1296313267),cljs.core.partial.call(null,scheje.interpreter.eval_prog_with_env,scheje.library.root_env));
 
-//# sourceMappingURL=interpreter.js.map?rel=1455728536879
+//# sourceMappingURL=interpreter.js.map?rel=1456341629488
