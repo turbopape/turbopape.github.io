@@ -49,9 +49,7 @@
         last-eval (->> forms-eval  :evals (map  #(get % 1)) last)]
     (when (nil? (:error last-eval))
       (swap! exec-env merge (:env forms-eval)))
-    (show-eval! (format-eval (pr-str last-eval)))
-
-    ))
+    (show-eval! (format-eval (pr-str last-eval)))))
 
 (.setOption editor "extraKeys"
             (js-obj "Ctrl-J" (fn[cm]

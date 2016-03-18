@@ -630,23 +630,23 @@ return (new cljs.tools.reader.reader_types.StringReader(s,cljs.core.count.call(n
  * Creates a PushbackReader from a given string
  */
 cljs.tools.reader.reader_types.string_push_back_reader = (function cljs$tools$reader$reader_types$string_push_back_reader(var_args){
-var args15525 = [];
-var len__14245__auto___15528 = arguments.length;
-var i__14246__auto___15529 = (0);
+var args31777 = [];
+var len__14245__auto___31780 = arguments.length;
+var i__14246__auto___31781 = (0);
 while(true){
-if((i__14246__auto___15529 < len__14245__auto___15528)){
-args15525.push((arguments[i__14246__auto___15529]));
+if((i__14246__auto___31781 < len__14245__auto___31780)){
+args31777.push((arguments[i__14246__auto___31781]));
 
-var G__15530 = (i__14246__auto___15529 + (1));
-i__14246__auto___15529 = G__15530;
+var G__31782 = (i__14246__auto___31781 + (1));
+i__14246__auto___31781 = G__31782;
 continue;
 } else {
 }
 break;
 }
 
-var G__15527 = args15525.length;
-switch (G__15527) {
+var G__31779 = args31777.length;
+switch (G__31779) {
 case 1:
 return cljs.tools.reader.reader_types.string_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -656,7 +656,7 @@ return cljs.tools.reader.reader_types.string_push_back_reader.cljs$core$IFn$_inv
 
 break;
 default:
-throw (new Error([cljs.core.str("Invalid arity: "),cljs.core.str(args15525.length)].join('')));
+throw (new Error([cljs.core.str("Invalid arity: "),cljs.core.str(args31777.length)].join('')));
 
 }
 });
@@ -677,23 +677,23 @@ return (new cljs.tools.reader.reader_types.PushbackReader((new cljs.tools.reader
  * Creates an IndexingPushbackReader from a given string or PushbackReader
  */
 cljs.tools.reader.reader_types.indexing_push_back_reader = (function cljs$tools$reader$reader_types$indexing_push_back_reader(var_args){
-var args15532 = [];
-var len__14245__auto___15535 = arguments.length;
-var i__14246__auto___15536 = (0);
+var args31784 = [];
+var len__14245__auto___31787 = arguments.length;
+var i__14246__auto___31788 = (0);
 while(true){
-if((i__14246__auto___15536 < len__14245__auto___15535)){
-args15532.push((arguments[i__14246__auto___15536]));
+if((i__14246__auto___31788 < len__14245__auto___31787)){
+args31784.push((arguments[i__14246__auto___31788]));
 
-var G__15537 = (i__14246__auto___15536 + (1));
-i__14246__auto___15536 = G__15537;
+var G__31789 = (i__14246__auto___31788 + (1));
+i__14246__auto___31788 = G__31789;
 continue;
 } else {
 }
 break;
 }
 
-var G__15534 = args15532.length;
-switch (G__15534) {
+var G__31786 = args31784.length;
+switch (G__31786) {
 case 1:
 return cljs.tools.reader.reader_types.indexing_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -707,7 +707,7 @@ return cljs.tools.reader.reader_types.indexing_push_back_reader.cljs$core$IFn$_i
 
 break;
 default:
-throw (new Error([cljs.core.str("Invalid arity: "),cljs.core.str(args15532.length)].join('')));
+throw (new Error([cljs.core.str("Invalid arity: "),cljs.core.str(args31784.length)].join('')));
 
 }
 });
@@ -729,23 +729,23 @@ cljs.tools.reader.reader_types.indexing_push_back_reader.cljs$lang$maxFixedArity
  * Creates a SourceLoggingPushbackReader from a given string or PushbackReader
  */
 cljs.tools.reader.reader_types.source_logging_push_back_reader = (function cljs$tools$reader$reader_types$source_logging_push_back_reader(var_args){
-var args15539 = [];
-var len__14245__auto___15542 = arguments.length;
-var i__14246__auto___15543 = (0);
+var args31791 = [];
+var len__14245__auto___31794 = arguments.length;
+var i__14246__auto___31795 = (0);
 while(true){
-if((i__14246__auto___15543 < len__14245__auto___15542)){
-args15539.push((arguments[i__14246__auto___15543]));
+if((i__14246__auto___31795 < len__14245__auto___31794)){
+args31791.push((arguments[i__14246__auto___31795]));
 
-var G__15544 = (i__14246__auto___15543 + (1));
-i__14246__auto___15543 = G__15544;
+var G__31796 = (i__14246__auto___31795 + (1));
+i__14246__auto___31795 = G__31796;
 continue;
 } else {
 }
 break;
 }
 
-var G__15541 = args15539.length;
-switch (G__15541) {
+var G__31793 = args31791.length;
+switch (G__31793) {
 case 1:
 return cljs.tools.reader.reader_types.source_logging_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -759,7 +759,7 @@ return cljs.tools.reader.reader_types.source_logging_push_back_reader.cljs$core$
 
 break;
 default:
-throw (new Error([cljs.core.str("Invalid arity: "),cljs.core.str(args15539.length)].join('')));
+throw (new Error([cljs.core.str("Invalid arity: "),cljs.core.str(args31791.length)].join('')));
 
 }
 });
@@ -787,10 +787,10 @@ while(true){
 if(cljs.tools.reader.impl.utils.newline_QMARK_.call(null,c)){
 return [cljs.core.str(s)].join('');
 } else {
-var G__15546 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
-var G__15547 = s.append(c);
-c = G__15546;
-s = G__15547;
+var G__31798 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
+var G__31799 = s.append(c);
+c = G__31798;
+s = G__31799;
 continue;
 }
 break;
@@ -802,14 +802,14 @@ break;
  */
 cljs.tools.reader.reader_types.reader_error = (function cljs$tools$reader$reader_types$reader_error(var_args){
 var args__14252__auto__ = [];
-var len__14245__auto___15550 = arguments.length;
-var i__14246__auto___15551 = (0);
+var len__14245__auto___31802 = arguments.length;
+var i__14246__auto___31803 = (0);
 while(true){
-if((i__14246__auto___15551 < len__14245__auto___15550)){
-args__14252__auto__.push((arguments[i__14246__auto___15551]));
+if((i__14246__auto___31803 < len__14245__auto___31802)){
+args__14252__auto__.push((arguments[i__14246__auto___31803]));
 
-var G__15552 = (i__14246__auto___15551 + (1));
-i__14246__auto___15551 = G__15552;
+var G__31804 = (i__14246__auto___31803 + (1));
+i__14246__auto___31803 = G__31804;
 continue;
 } else {
 }
@@ -833,10 +833,10 @@ return null;
 
 cljs.tools.reader.reader_types.reader_error.cljs$lang$maxFixedArity = (1);
 
-cljs.tools.reader.reader_types.reader_error.cljs$lang$applyTo = (function (seq15548){
-var G__15549 = cljs.core.first.call(null,seq15548);
-var seq15548__$1 = cljs.core.next.call(null,seq15548);
-return cljs.tools.reader.reader_types.reader_error.cljs$core$IFn$_invoke$arity$variadic(G__15549,seq15548__$1);
+cljs.tools.reader.reader_types.reader_error.cljs$lang$applyTo = (function (seq31800){
+var G__31801 = cljs.core.first.call(null,seq31800);
+var seq31800__$1 = cljs.core.next.call(null,seq31800);
+return cljs.tools.reader.reader_types.reader_error.cljs$core$IFn$_invoke$arity$variadic(G__31801,seq31800__$1);
 });
 cljs.tools.reader.reader_types.source_logging_reader_QMARK_ = (function cljs$tools$reader$reader_types$source_logging_reader_QMARK_(rdr){
 return (rdr instanceof cljs.tools.reader.reader_types.SourceLoggingPushbackReader);
@@ -864,4 +864,4 @@ return ret;
 }finally {cljs.core.swap_BANG_.call(null,reader.frames,cljs.core.update_in,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"offset","offset",296498311)], null),cljs.core.rest);
 }});
 
-//# sourceMappingURL=reader_types.js.map?rel=1456341630345
+//# sourceMappingURL=reader_types.js.map?rel=1458338365188

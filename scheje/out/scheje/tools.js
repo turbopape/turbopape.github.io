@@ -4,8 +4,8 @@ goog.require('cljs.core');
 goog.require('clojure.walk');
 goog.require('cljs.reader');
 scheje.tools.get_syntax = (function scheje$tools$get_syntax(exp,syntaxes){
-return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__14422_SHARP_){
-return cljs.core._EQ_.call(null,exp,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(p1__14422_SHARP_));
+return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__30823_SHARP_){
+return cljs.core._EQ_.call(null,exp,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(p1__30823_SHARP_));
 }),syntaxes));
 });
 scheje.tools.get_literals = (function scheje$tools$get_literals(syntaxes){
@@ -58,24 +58,24 @@ var cur_level = ((cljs.core._EQ_.call(null,cur_char,"("))?(level + (1)):((cljs.c
 ));
 var result__$1 = (((cur_level === (0)))?cljs.core.conj.call(null,result,[cljs.core.str(current_sexp),cljs.core.str(cur_char)].join('')):result);
 var new_current_sexp = (((cur_level === (0)))?"":[cljs.core.str(current_sexp),cljs.core.str(cur_char)].join(''));
-var G__14423 = cljs.core.rest.call(null,remaining);
-var G__14424 = cur_level;
-var G__14425 = result__$1;
-var G__14426 = new_current_sexp;
-remaining = G__14423;
-level = G__14424;
-result = G__14425;
-current_sexp = G__14426;
+var G__30824 = cljs.core.rest.call(null,remaining);
+var G__30825 = cur_level;
+var G__30826 = result__$1;
+var G__30827 = new_current_sexp;
+remaining = G__30824;
+level = G__30825;
+result = G__30826;
+current_sexp = G__30827;
 continue;
 } else {
-var G__14427 = cljs.core.rest.call(null,remaining);
-var G__14428 = level;
-var G__14429 = result;
-var G__14430 = current_sexp;
-remaining = G__14427;
-level = G__14428;
-result = G__14429;
-current_sexp = G__14430;
+var G__30828 = cljs.core.rest.call(null,remaining);
+var G__30829 = level;
+var G__30830 = result;
+var G__30831 = current_sexp;
+remaining = G__30828;
+level = G__30829;
+result = G__30830;
+current_sexp = G__30831;
 continue;
 }
 } else {
@@ -84,11 +84,29 @@ return result;
 break;
 }
 });
+/**
+ * replace #t, :, /,... into valid clojure strs
+ */
+scheje.tools.sanitize_scm__GT_clj = (function scheje$tools$sanitize_scm__GT_clj(s){
+return s.replace("#t","true").replace("#f","false").replace("==","_dbl_eq_").replace("/","_slash_").replace("#(","(vector ").replace("#","_hash_").replace(":","_column_").replace("@","_at_").replace("^","_circum_");
+});
+/**
+ * replace clojure literals to scheme literals #t, #f, :, @...
+ */
+scheje.tools.print_clj__GT_scm = (function scheje$tools$print_clj__GT_scm(s){
+return s.replace("true","#t").replace("false","#f").replace("_dbl_eq_","==").replace("_slash_","/").replace("[","#(").replace("]",")").replace("_hash_","#").replace("_column_",":").replace("_at_","@").replace("_circum_","^");
+});
+scheje.tools.format_eval = (function scheje$tools$format_eval(the_eval){
+return scheje.tools.print_clj__GT_scm.call(null,cljs.core.pr_str.call(null,the_eval));
+});
+scheje.tools.slurp_scm_str = (function scheje$tools$slurp_scm_str(input){
+return cljs.reader.read_string.call(null,scheje.tools.sanitize_scm__GT_clj.call(null,input));
+});
 scheje.tools.load_prog_from_file = (function scheje$tools$load_prog_from_file(f){
 var file_string = (function (){var fs = require("fs");
 return fs.readFileSync(f,"utf8");
 })();
-return cljs.core.map.call(null,cljs.reader.read_string,scheje.tools.get_sexps.call(null,file_string));
+return cljs.core.map.call(null,cljs.reader.read_string,scheje.tools.get_sexps.call(null,scheje.tools.sanitize_scm__GT_clj.call(null,file_string)));
 });
 
-//# sourceMappingURL=tools.js.map?rel=1456341628820
+//# sourceMappingURL=tools.js.map?rel=1458338364190
