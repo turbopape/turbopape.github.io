@@ -4,8 +4,8 @@ goog.require('cljs.core');
 goog.require('clojure.walk');
 goog.require('cljs.reader');
 scheje.tools.get_syntax = (function scheje$tools$get_syntax(exp,syntaxes){
-return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__30823_SHARP_){
-return cljs.core._EQ_.call(null,exp,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(p1__30823_SHARP_));
+return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__14431_SHARP_){
+return cljs.core._EQ_.call(null,exp,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(p1__14431_SHARP_));
 }),syntaxes));
 });
 scheje.tools.get_literals = (function scheje$tools$get_literals(syntaxes){
@@ -58,24 +58,24 @@ var cur_level = ((cljs.core._EQ_.call(null,cur_char,"("))?(level + (1)):((cljs.c
 ));
 var result__$1 = (((cur_level === (0)))?cljs.core.conj.call(null,result,[cljs.core.str(current_sexp),cljs.core.str(cur_char)].join('')):result);
 var new_current_sexp = (((cur_level === (0)))?"":[cljs.core.str(current_sexp),cljs.core.str(cur_char)].join(''));
-var G__30824 = cljs.core.rest.call(null,remaining);
-var G__30825 = cur_level;
-var G__30826 = result__$1;
-var G__30827 = new_current_sexp;
-remaining = G__30824;
-level = G__30825;
-result = G__30826;
-current_sexp = G__30827;
+var G__14432 = cljs.core.rest.call(null,remaining);
+var G__14433 = cur_level;
+var G__14434 = result__$1;
+var G__14435 = new_current_sexp;
+remaining = G__14432;
+level = G__14433;
+result = G__14434;
+current_sexp = G__14435;
 continue;
 } else {
-var G__30828 = cljs.core.rest.call(null,remaining);
-var G__30829 = level;
-var G__30830 = result;
-var G__30831 = current_sexp;
-remaining = G__30828;
-level = G__30829;
-result = G__30830;
-current_sexp = G__30831;
+var G__14436 = cljs.core.rest.call(null,remaining);
+var G__14437 = level;
+var G__14438 = result;
+var G__14439 = current_sexp;
+remaining = G__14436;
+level = G__14437;
+result = G__14438;
+current_sexp = G__14439;
 continue;
 }
 } else {
@@ -109,4 +109,4 @@ return fs.readFileSync(f,"utf8");
 return cljs.core.map.call(null,cljs.reader.read_string,scheje.tools.get_sexps.call(null,scheje.tools.sanitize_scm__GT_clj.call(null,file_string)));
 });
 
-//# sourceMappingURL=tools.js.map?rel=1458338364190
+//# sourceMappingURL=tools.js.map?rel=1464515094459

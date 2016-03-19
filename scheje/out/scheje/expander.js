@@ -8,8 +8,8 @@ goog.require('clojure.walk');
  * returns all symbols beginning with s, ordered 
  */
 scheje.expander.get_ordered_symbols_for = (function scheje$expander$get_ordered_symbols_for(s,a_match){
-return cljs.core.sort_by.call(null,cljs.core.comp.call(null,new cljs.core.Keyword(null,"idx","idx",1053688473),scheje.unifier.get_symbol_idx,cljs.core.str),cljs.core._GT_,cljs.core.map.call(null,(function (p1__30935_SHARP_){
-return cljs.core.get.call(null,p1__30935_SHARP_,(0));
+return cljs.core.sort_by.call(null,cljs.core.comp.call(null,new cljs.core.Keyword(null,"idx","idx",1053688473),scheje.unifier.get_symbol_idx,cljs.core.str),cljs.core._GT_,cljs.core.map.call(null,(function (p1__14610_SHARP_){
+return cljs.core.get.call(null,p1__14610_SHARP_,(0));
 }),cljs.core.filter.call(null,cljs.core.comp.call(null,cljs.core.partial.call(null,cljs.core._EQ_,[cljs.core.str(s)].join('')),new cljs.core.Keyword(null,"sym","sym",-1444860305),scheje.unifier.get_symbol_idx,cljs.core.str,cljs.core.key),a_match)));
 });
 scheje.expander.get_exp_symbols = (function scheje$expander$get_exp_symbols(exp,a_match_symbols){
@@ -29,8 +29,8 @@ return cljs.core.deref.call(null,res);
 scheje.expander.generate_exp = (function scheje$expander$generate_exp(exp,some_matches){
 return clojure.walk.postwalk.call(null,(function (x){
 if((x instanceof cljs.core.Symbol)){
-var temp__4655__auto__ = cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__30936_SHARP_){
-return cljs.core._EQ_.call(null,[cljs.core.str(x)].join(''),new cljs.core.Keyword(null,"sym","sym",-1444860305).cljs$core$IFn$_invoke$arity$1(scheje.unifier.get_symbol_idx.call(null,[cljs.core.str(p1__30936_SHARP_)].join(''))));
+var temp__4655__auto__ = cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__14611_SHARP_){
+return cljs.core._EQ_.call(null,[cljs.core.str(x)].join(''),new cljs.core.Keyword(null,"sym","sym",-1444860305).cljs$core$IFn$_invoke$arity$1(scheje.unifier.get_symbol_idx.call(null,[cljs.core.str(p1__14611_SHARP_)].join(''))));
 }),some_matches));
 if(cljs.core.truth_(temp__4655__auto__)){
 var the_sym = temp__4655__auto__;
@@ -46,8 +46,8 @@ return x;
 scheje.expander.repeat_exp = (function scheje$expander$repeat_exp(exp,a_match){
 var syms = scheje.expander.get_exp_symbols.call(null,exp,cljs.core.set.call(null,cljs.core.map.call(null,cljs.core.comp.call(null,cljs.core.symbol,new cljs.core.Keyword(null,"sym","sym",-1444860305),scheje.unifier.get_symbol_idx,cljs.core.str,cljs.core.key),a_match)));
 var exp_matches = cljs.core.mapv.call(null,((function (syms){
-return (function (p1__30937_SHARP_){
-return scheje.expander.get_ordered_symbols_for.call(null,p1__30937_SHARP_,a_match);
+return (function (p1__14612_SHARP_){
+return scheje.expander.get_ordered_symbols_for.call(null,p1__14612_SHARP_,a_match);
 });})(syms))
 ,syms);
 var can_expand_QMARK_ = cljs.core.apply.call(null,cljs.core._EQ_,cljs.core.mapv.call(null,cljs.core.count,exp_matches));
@@ -58,10 +58,10 @@ while(true){
 if(cljs.core.every_QMARK_.call(null,cljs.core.nil_QMARK_,cljs.core.map.call(null,cljs.core.seq,remaining))){
 return res;
 } else {
-var G__30938 = cljs.core.map.call(null,cljs.core.rest,remaining);
-var G__30939 = cljs.core.conj.call(null,res,scheje.expander.generate_exp.call(null,exp,cljs.core.map.call(null,cljs.core.first,remaining)));
-remaining = G__30938;
-res = G__30939;
+var G__14613 = cljs.core.map.call(null,cljs.core.rest,remaining);
+var G__14614 = cljs.core.conj.call(null,res,scheje.expander.generate_exp.call(null,exp,cljs.core.map.call(null,cljs.core.first,remaining)));
+remaining = G__14613;
+res = G__14614;
 continue;
 }
 break;
@@ -103,4 +103,4 @@ return x;
 ,expanded);
 });
 
-//# sourceMappingURL=expander.js.map?rel=1458338364433
+//# sourceMappingURL=expander.js.map?rel=1464515094909
